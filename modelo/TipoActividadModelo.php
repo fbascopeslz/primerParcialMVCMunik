@@ -2,13 +2,12 @@
 //Incluímos inicialmente la conexión a la base de datos
 require "../config/Conexion.php";
 
-Class VacunaModelo
+Class TipoActividad
 {
-	public $idVacuna;
+	public $idTipoActividad;
 	public $nombre;
-	public $indicaciones;
-	public $fechaVencimiento;
 
+	
 	//Implementamos nuestro constructor
 	public function __construct()
 	{
@@ -16,14 +15,14 @@ Class VacunaModelo
 	}
 	
 
-	public function getIdVacuna()
+	public function getIdTipoActividad()
 	{
-		return $this->idVacuna;
+		return $this->idTipoActividad;
 	}
 
-	public function setIdVacuna($idVacuna)
+	public function setIdTipoActividad($idTipoActividad)
 	{
-		$this->idVacuna = $idVacuna;
+		$this->idTipoActividad = $idTipoActividad;
 	}
 
 	public function getNombre()
@@ -34,26 +33,6 @@ Class VacunaModelo
 	public function setNombre($nombre)
 	{
 		$this->nombre = $nombre;
-	}
-
-	public function getIndicaciones()
-	{
-		return $this->indicaciones;
-	}
-
-	public function setIndicaciones($indicaciones)
-	{
-		$this->indicaciones = $indicaciones;
-	}
-
-	public function getFechaVencimiento()
-	{
-		return $this->fechaVencimiento;
-	}
-
-	public function setFechaVencimiento($fechaVencimiento)
-	{
-		$this->fechaVencimiento = $fechaVencimiento;
 	}
 	
 
@@ -86,18 +65,7 @@ Class VacunaModelo
 		$sql="SELECT * FROM vacuna";
 		return ejecutarConsulta($sql);		
 	}
-	
-	public function seleccionarVacuna($idPaciente)
-	{
-		$sql = "SELECT id, nombre, indicaciones
-				FROM vacuna
-				WHERE id NOT IN(
-					SELECT idVacuna
-					FROM cartillavacunacion
-					WHERE idPaciente = $idPaciente
-				)";		
-		return ejecutarConsulta($sql);		
-	}
+		
 }
 
 ?>
