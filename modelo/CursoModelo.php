@@ -58,7 +58,7 @@ Class CursoModelo
 	public function insertar()
 	{
 		$sql = "INSERT INTO curso (nombre,paralelo, descripcion) 
-			VALUES ('$this->nombre','$this->paralelo', ,'$this->descripcion')";
+			VALUES ('$this->nombre','$this->paralelo', '$this->descripcion')";			
 		return ejecutarConsulta($sql);		
 
 	}
@@ -81,7 +81,7 @@ Class CursoModelo
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM idCurso";
+		$sql="SELECT * FROM Curso";
 		return ejecutarConsulta($sql);			
 	}
 

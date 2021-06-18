@@ -127,6 +127,14 @@ if (strlen(session_id()) < 1)
                     Tipo Actividad
                   </p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="curso.php" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Curso
+                  </p>
+                </a>
               </li>					
           </ul>
         </nav>
