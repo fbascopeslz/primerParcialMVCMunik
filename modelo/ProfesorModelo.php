@@ -116,7 +116,7 @@ Class ProfesorModelo
 	public function insertar()
 	{
 		$sql = "INSERT INTO profesor (nombre,apellido, ci, sexo, direccion, telefono, correo, password) 
-			VALUES ('$this->nombre','$this->apellido','$this->ci','$this->sexo','$this->direccion','$this->telefono','$this->correo',  '$this->password')";
+			VALUES ('$this->nombre','$this->apellido','$this->ci','$this->sexo','$this->direccion', $this->telefono,'$this->correo',  '$this->password')";
 		return ejecutarConsulta($sql);		
 
 	}
@@ -124,8 +124,8 @@ Class ProfesorModelo
 	//Implementamos un método para editar registros
 	public function editar()
 	{
-		$sql = "UPDATE profesor SET nombre ='$this->nombre', apellido = '$this->apellido', sexo = '$this->sexo', direccion = '$this->direccion' , telefono = '$this->telefono', correo = '$this->correo', password = '$this->password'
-			WHERE id = $this->idProfesor";
+		$sql = "UPDATE profesor SET nombre ='$this->nombre', apellido = '$this->apellido', sexo = '$this->sexo', direccion = '$this->direccion' , telefono = $this->telefono, correo = '$this->correo', password = '$this->password'
+			WHERE id = $this->idProfesor";		
 		return ejecutarConsulta($sql);
 	}
 
@@ -139,7 +139,7 @@ Class ProfesorModelo
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM idProfesor";
+		$sql="SELECT * FROM profesor";
 		return ejecutarConsulta($sql);			
 	}
 

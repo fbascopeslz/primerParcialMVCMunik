@@ -38,7 +38,7 @@ if (strlen(session_id()) < 1)
   <link href="../../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
   <link href="../../public/datatables/responsive.dataTables.min.css" rel="stylesheet"/>
 
-  <link rel="stylesheet" type="text/css" href="../../public/css/bootstrap-select.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -135,7 +135,31 @@ if (strlen(session_id()) < 1)
                     Curso
                   </p>
                 </a>
-              </li>					
+              </li>	
+              <li class="nav-item">
+                <a href="profesor.php" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Profesor
+                  </p>
+                </a>
+              </li>		
+              <li class="nav-item">
+                <a href="materia.php" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Materia
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="actividad.php" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Actividad
+                  </p>
+                </a>
+              </li>				
           </ul>
         </nav>
         <!-- /.sidebar-menu -->            

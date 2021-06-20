@@ -62,7 +62,7 @@ Class MateriaModelo
 	//Implementar un método para listar los registros
 	public function listar()
 	{
-		$sql="SELECT * FROM idMateria";
+		$sql="SELECT * FROM materia";
 		return ejecutarConsulta($sql);			
 	}
 
