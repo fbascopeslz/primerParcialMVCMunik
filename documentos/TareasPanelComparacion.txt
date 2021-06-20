@@ -1,8 +1,0 @@
-poner la imagen en el mapa abajito
-y quitar el espacio entre los 2 mapas
-hacer zoom a la propiedad
-
-Monitoreo EOS
-
-la segunda lista debe ser un componente aparte
-al abrir vista movil cambiar orientacion
