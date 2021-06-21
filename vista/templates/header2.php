@@ -159,6 +159,14 @@ if (strlen(session_id()) < 1)
                     Actividad
                   </p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="gestion.php" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Gestion
+                  </p>
+                </a>
               </li>				
           </ul>
         </nav>
