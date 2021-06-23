@@ -35,7 +35,7 @@ class ActividadVista {
  				"0" => '<button class="btn btn-warning" onclick="mostrar('.$reg->id.')"><i class="fa fa-pen"></i></button>',
  				"1" => $reg->nombre,
 				"2" => $reg->fecha,
-				"3" => '<a href="http://localhost/primerParcialMVCMunik/'.$reg->documento.'" target="_blank">'.$reg->documento.'</a>',
+				"3" => '<a href="http://localhost:8080/primerParcialMVCMunik/'.$reg->documento.'" target="_blank">'.$reg->documento.'</a>',
 				"4" => $reg->materia,
 				"5" => $reg->gestion,
 				"6" => $reg->tipoActividad
