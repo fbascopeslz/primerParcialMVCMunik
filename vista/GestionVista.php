@@ -13,12 +13,12 @@ class GestionVista {
     {        		
 		echo $rspta ? "Gestion registrado" : "Gestion no se pudo registrar";		
 	}
-	/*
+	
 	public function editar($rspta) 
     {        		
 		echo $rspta ? "Gestion actualizado" : "Gestion no se pudo actualizar";		
     }
-    */
+    
     public function mostrar($rspta) 
     {        
  		//Codificar el resultado utilizando json
@@ -43,7 +43,7 @@ class GestionVista {
  			"sEcho" => 1, //Información para el datatables
  			"iTotalRecords" => count($data), //enviamos el total registros al datatable
  			"iTotalDisplayRecords" => count($data), //enviamos el total registros a visualizar
-			 "aaData" => $data);
+			"aaData" => $data);
 			 
  		echo json_encode($results);
 	} 

@@ -66,10 +66,10 @@ Class GestionMateriaModelo
 	//Implementar un método para mostrar los datos de un registro a modificar
 	public function mostrar()
 	{
-		$sql = "SELECT Pro.id, Per.nombre, Per.ci, Per.telefono, Per.email, Pro.idPersona AS idPersona
-				FROM persona Per, propietario Pro
-				WHERE Pro.idPersona = Per.id AND Pro.id = $this->idPropietario";			
-		return ejecutarConsultaSimpleFila($sql);
+		$sql = "SELECT M.id as idMateria, M.nombre AS nombreMateria, C.id AS idCurso, CONCAT(C.nombre, ' ', C.paralelo, ' ', C.descripcion) as nombreCurso
+				FROM GestionMateria GM, Gestion G, Materia M, Curso C
+				WHERE GM.gestion_id = G.id AND GM.materia_id = M.id AND GM.curso_id = C.id AND GM.gestion_id = $this->idGestion";			
+		return ejecutarConsulta($sql);
 	}
 
 	//Implementar un método para listar los registros

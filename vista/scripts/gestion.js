@@ -9,7 +9,7 @@ function init()
 
 	$("#formularioregistros").on("submit", function(e)
 	{
-		guardar(e);		
+		guardaryeditar(e);		
 	});	
 }
 
@@ -136,14 +136,14 @@ function eliminarDetalle(index) {
 	cont = cont - 1;	
 }
 
-function guardar(e)
+function guardaryeditar(e)
 {
 	e.preventDefault(); //No se activará la acción predeterminada del evento	
 	if (cont > 0) {
 		$("#btnGuardar").prop("disabled", true);
 		var formData = new FormData($("#formulario")[0]);		
 		$.ajax({
-			url: "../../controlador/GestionControlador.php?op=insertar",
+			url: "../../controlador/GestionControlador.php?op=guardaryeditar",
 			type: "POST",
 			data: formData,
 			contentType: false,
@@ -159,6 +159,37 @@ function guardar(e)
 	} else {
 		alert("Porfavor agregue almenos una materia");
 	}
+}
+
+function mostrar(idGestion) {
+	$.post("../../controlador/GestionControlador.php?op=mostrar",{idGestion: idGestion}, function(data, status)
+	{
+		data = JSON.parse(data);		
+		mostrarform(1);		
+		console.log(data);
+
+		let gestion = data[0];
+		$("#idGestion").val(gestion.ID);
+		$("#nombre").val(gestion.NOMBRE);			
+		$("#fechaInicio").val(gestion.FECHA_INICIO);
+		$("#fechaFin").val(gestion.FECHA_FIN);
+		//$("#idProfesor").val('3');
+		//$("#idProfesor option[value='3']").attr('selected', 'selected');
+		//document.getElementById("idProfesor").selectedIndex = '3';
+		
+		let arrayMateriaCurso = data[1];
+		arrayMateriaCurso.forEach(element => {
+			var fila =
+				'<tr class="filas" id="fila'+cont+'">'+
+					'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
+					'<td id=filaNombreMateria' + cont + '><input type="hidden" id=filaMateria' + cont + ' name="idsMaterias[]" value="'+element.idMateria+'">'+element.nombreMateria+'</td>'+
+					'<td id=filaNombreCurso' + cont + '><input type="hidden" id=filaCurso' + cont + ' name="idsCursos[]" value="'+element.idCurso+'">'+element.nombreCurso+'</td>'+									
+				'</tr>';		
+			cont++;  
+			$('#tablaDetallesGestionMateria').append(fila);			
+		});
+
+ 	})
 }
 
 init();

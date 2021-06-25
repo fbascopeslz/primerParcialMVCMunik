@@ -74,6 +74,49 @@ class GestionControlador {
         echo $rspta;
     }
 
+    public function editar($idGestion, $nombre, $fechaInicio, $fechaFin, $profesorId, $arrayIdMaterias, $arrayIdCursos) 
+    {                
+        $rspta = null; 
+
+        $this->gestionModelo->setIdGestion($idGestion);
+        $this->gestionModelo->setNombre($nombre);
+        $this->gestionModelo->setFechaInicio($fechaInicio);
+        $this->gestionModelo->setFechaFin($fechaFin);
+        $this->gestionModelo->setProfesorId($profesorId);
+        $rspta = $this->gestionModelo->editar();                
+
+        /*
+        for ($i=0; $i < count($arrayIdMaterias); $i++) { 
+            $this->gestionMateriaModelo->setIdGestion($idGestion);
+            $this->gestionMateriaModelo->setIdMateria($arrayIdMaterias[$i]);
+            $this->gestionMateriaModelo->setIdCurso($arrayIdCursos[$i]);            
+            $this->gestionMateriaModelo->insertar();
+        }
+        */
+
+        $rspta = $this->gestionVista->editar($rspta);
+        echo $rspta;
+    }
+
+    public function mostrar($idGestion) 
+    {
+        $this->gestionModelo->setIdGestion($idGestion);
+        $rsptaModeloGestion = $this->gestionModelo->mostrar();
+
+        $this->gestionMateriaModelo->setIdGestion($idGestion);
+        $rsptaModeloGestionMateria = $this->gestionMateriaModelo->mostrar();        
+        $arrayMateriaCurso= [];
+        while ($reg = $rsptaModeloGestionMateria->fetch_object()) {
+            $arrayMateriaCurso[] = $reg;
+        }
+
+        $response = [$rsptaModeloGestion, $arrayMateriaCurso];
+
+        $rsptaVista = $this->gestionVista->mostrar($response);        
+
+        echo $rsptaVista;
+    }
+
     public function seleccionarProfesor() 
     {
         $rspta = $this->profesorModelo->listar();
@@ -102,14 +145,26 @@ switch ($_GET["op"])
 		$gestionControlador->listar();
 	break;
 
-	case 'insertar':		
+	case 'guardaryeditar':		
+        $idGestion = isset($_POST["idGestion"]) ? limpiarCadena($_POST["idGestion"]) : "";
 		$nombre = isset($_POST["nombre"]) ? limpiarCadena($_POST["nombre"]) : "";
         $fechaInicio = isset($_POST["fechaInicio"]) ? limpiarCadena($_POST["fechaInicio"]) : "";
         $fechaFin = isset($_POST["fechaFin"]) ? limpiarCadena($_POST["fechaFin"]) : "";
         $profesorId = isset($_POST["idProfesor"]) ? limpiarCadena($_POST["idProfesor"]) : "";        
 		$arrayIdMaterias = $_POST["idsMaterias"];
 		$arrayIdCursos = $_POST["idsCursos"];
-		$gestionControlador->insertar($nombre, $fechaInicio, $fechaFin, $profesorId, $arrayIdMaterias, $arrayIdCursos);
+
+        if (empty($idGestion)) {            
+			$gestionControlador->insertar($nombre, $fechaInicio, $fechaFin, $profesorId, $arrayIdMaterias, $arrayIdCursos);
+		} else {
+			$gestionControlador->editar($idGestion, $nombre, $fechaInicio, $fechaFin, $profesorId, $arrayIdMaterias, $arrayIdCursos);
+		}
+		
+	break;
+
+    case 'mostrar':
+        $idGestion = isset($_POST["idGestion"]) ? limpiarCadena($_POST["idGestion"]) : "";
+		$gestionControlador->mostrar($idGestion);
 	break;
 	
     case 'seleccionarProfesor':

@@ -78,7 +78,7 @@ Class GestionModelo
 	//Implementamos un método para editar registros
 	public function editar()
 	{
-		$sql = "UPDATE Gestion SET nombre ='$this->nombre', fechainicio = '$this->fechaInicio', fechaFin = '$this->fechaFin', profesorid = $this->profesorId
+		$sql = "UPDATE Gestion SET nombre ='$this->nombre', fecha_inicio = '$this->fechaInicio', fecha_fin = '$this->fechaFin', profesor_id = $this->profesorId
 			WHERE id = $this->idGestion";
 		return ejecutarConsulta($sql);
 	}
